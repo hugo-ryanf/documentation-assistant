@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Ambientes virtuais
+venv/
+env/
+.venv/
+ENV/
+backend/venv/
+
+# Dados e índices
+backend/data/documentos/*.pdf
+backend/data/faiss_index/
+backend/data/metadata.json
+
+# Manter pastas vazias
+!backend/data/documentos/.gitkeep
+!backend/data/faiss_index/.gitkeep
+
+# Environment variables
+.env
+*.env
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+
+# Ollama models
+*.bin
+*.gguf
