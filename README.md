@@ -20,7 +20,7 @@ Sistema RAG para busca inteligente em documentação empresarial com IA 100% loc
 
 Empresas possuem centenas de documentos internos — manuais de RH, políticas de compliance, guias técnicos, procedimentos operacionais — espalhados em drives e sistemas. Funcionários perdem tempo valioso procurando informações básicas, sobrecarregando equipes de suporte com perguntas repetitivas.
 
-O **Documentation Assistant** foi criado para resolver este problema. Utilizando uma arquitetura de **Geração Aumentada por Recuperação (RAG)**, este sistema transforma sua documentação em uma base de conhecimento interativa. Funcionários fazem perguntas em linguagem natural e recebem respostas precisas, com citação automática das fontes (documento + página), geradas por um modelo de linguagem local (Mistral 7B via Ollama) que garante total privacidade dos dados corporativos.
+O **DocAssistent** foi criado para resolver este problema. Utilizando uma arquitetura de **Geração Aumentada por Recuperação (RAG)**, este sistema transforma sua documentação em uma base de conhecimento interativa. Funcionários fazem perguntas em linguagem natural e recebem respostas precisas, com citação automática das fontes (documento + página), geradas por um modelo de linguagem local (Mistral 7B via Ollama) que garante total privacidade dos dados corporativos.
 
 **Ideal para:** Onboarding de novos funcionários, suporte ao RH/TI, compliance interno, e qualquer cenário onde documentação precisa ser acessível e auditável.
 
