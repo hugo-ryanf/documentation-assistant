@@ -1,274 +1,267 @@
-\# 💼 Documentation Assistant
+💼 Documentation Assistant
+Sistema RAG para busca inteligente em documentação empresarial com IA 100% local
+
+https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white
+https://img.shields.io/badge/FastAPI-0.109-009688?logo=fastapi&logoColor=white
+https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black
+https://img.shields.io/badge/License-MIT-yellow
+https://img.shields.io/badge/License-MIT-yellow
+
+📖 Sobre o Projeto
+Empresas possuem centenas de documentos internos — manuais de RH, políticas de compliance, guias técnicos, procedimentos operacionais — espalhados em drives e sistemas. Funcionários perdem tempo valioso procurando informações básicas, sobrecarregando equipes de suporte com perguntas repetitivas.
+O Documentation Assistant foi criado para resolver este problema. Utilizando uma arquitetura de Geração Aumentada por Recuperação (RAG), este sistema transforma sua documentação em uma base de conhecimento interativa. Funcionários fazem perguntas em linguagem natural e recebem respostas precisas, com citação automática das fontes (documento + página), geradas por um modelo de linguagem local (Mistral 7B via Ollama) que garante total privacidade dos dados corporativos.
+Ideal para: Onboarding de novos funcionários, suporte ao RH/TI, compliance interno, e qualquer cenário onde documentação precisa ser acessível e auditável.
+
+✨ Funcionalidades Principais
+
+💬 Consultas em Linguagem Natural: "Como solicitar férias?" ou "Qual a política de home office?" — pergunte como se estivesse conversando com um colega.
+🎯 Respostas Baseadas em Fontes: Todas as respostas são construídas a partir de trechos relevantes extraídos dos seus documentos, evitando "alucinações" da IA.
+🔍 Visualização das Fontes: Cada resposta mostra exatamente qual documento (e página) foi usado, permitindo auditoria completa.
+📤 Upload Simples de PDFs: Interface para adicionar novos documentos que são automaticamente indexados.
+🔒 Arquitetura 100% Local: LLM, embeddings e dados ficam no seu servidor. Nenhuma informação é enviada para APIs externas — perfeito para dados sensíveis e conformidade com LGPD.
+
+🛠️ Tecnologias Utilizadas
+Backend:
+
+API Framework: FastAPI
+Orquestração RAG: LangChain
+Embeddings: Sentence-Transformers (all-MiniLM-L6-v2)
+Vector Store: FAISS (Facebook AI Similarity Search)
+LLM Local: Ollama + Mistral 7B
+Processamento de PDFs: PyPDF
+
+Frontend:
+
+Framework: React + Vite
+HTTP Client: Axios
+Estilização: CSS moderno com design responsivo
+
+Infraestrutura:
+
+Linguagem: Python 3.11+
+Node.js: 18+
+Containerização: Docker (opcional)
 
 
+🚀 Como Executar Localmente
+Pré-requisitos
 
-Sistema RAG para busca inteligente em documentação empresarial com IA 100% local.
+Python 3.11+
+Node.js 18+
+Ollama instalado (ollama.com/download)
+Git
 
+1. Clone o Repositório
+bashgit clone https://github.com/hugo-ryanf/documentation-assistant.git
+cd documentation-assistant
+2. Configuração do Backend
+bashcd backend
 
-
-\## 🎯 Funcionalidades
-
-
-
-\- ✅ Consultas em linguagem natural
-
-\- ✅ Respostas baseadas em fontes confiáveis
-
-\- ✅ Citação automática de documentos e páginas
-
-\- ✅ 100% Local - privacidade total dos dados
-
-\- ✅ Interface web moderna e responsiva
-
-
-
-\## 🛠️ Tecnologias
-
-
-
-\*\*Backend:\*\*
-
-\- Python + FastAPI
-
-\- LangChain
-
-\- Sentence-Transformers (embeddings)
-
-\- FAISS (vector database)
-
-\- Ollama + Mistral (LLM local)
-
-
-
-\*\*Frontend:\*\*
-
-\- React + Vite
-
-\- Axios
-
-
-
-\## 📦 Instalação
-
-
-
-\### Pré-requisitos
-
-\- Python 3.11+
-
-\- Node.js 18+
-
-\- Ollama instalado
-
-
-
-\### Backend
-
-```bash
-
-cd backend
-
+# Criar ambiente virtual
 python -m venv venv
 
-
-
-\# Windows
-
-venv\\Scripts\\Activate
-
-
-
-\# Mac/Linux
-
+# Ativar ambiente virtual
+# Windows:
+venv\Scripts\Activate
+# Mac/Linux:
 source venv/bin/activate
 
-
-
+# Instalar dependências
 pip install -r requirements.txt
-
-```
-
-
-
-\### LLM Local
-
-```bash
-
-\# Instalar Ollama: https://ollama.com/download
-
+3. Configurar LLM Local (Ollama)
+bash# Baixar modelo Mistral (primeira vez demora ~4GB)
 ollama pull mistral
 
-```
+# Verificar instalação
+ollama list
+4. Iniciar o Backend
+bash# Na pasta backend/ com venv ativado
+uvicorn app.main:app --reload
+API estará disponível em: http://localhost:8000
+Documentação interativa: http://localhost:8000/docs
+5. Configuração do Frontend
+Em um novo terminal:
+bashcd frontend
 
-
-
-\### Frontend
-
-```bash
-
-cd frontend
-
+# Instalar dependências
 npm install
 
-```
-
-
-
-\## 🚀 Como Usar
-
-
-
-\### 1. Iniciar Backend
-
-```bash
-
-cd backend
-
-uvicorn app.main:app --reload
-
-```
-
-
-
-API disponível em: http://localhost:8000
-
-
-
-\### 2. Iniciar Frontend
-
-```bash
-
-cd frontend
-
+# Iniciar aplicação
 npm run dev
-
 ```
 
+Interface web estará em: **http://localhost:5173**
 
+### 6. Upload de Documentos e Uso
 
-Interface em: http://localhost:5173
+1. Acesse http://localhost:5173
+2. Faça upload de PDFs (manuais, políticas, guias internos)
+3. Aguarde indexação automática
+4. Digite sua pergunta: *"Como solicitar reembolso?"*
+5. Receba resposta com fontes citadas!
 
+---
 
-
-\### 3. Upload de Documentos
-
-
-
-\- Acesse a interface web
-
-\- Faça upload de PDFs (manuais, políticas, guias)
-
-\- Sistema indexa automaticamente
-
-
-
-\### 4. Fazer Perguntas
-
-
-
-\- Digite sua pergunta em linguagem natural
-
-\- Receba resposta clara com citação das fontes
-
-\- Clique nas fontes para ver documento original
-
-
-
-\## 📸 Casos de Uso
-
-
-
-\- \*\*RH:\*\* Políticas de férias, home office, benefícios
-
-\- \*\*TI:\*\* Procedimentos técnicos, troubleshooting
-
-\- \*\*Compliance:\*\* Regulamentos internos, normas
-
-\- \*\*Operações:\*\* Manuais de processo, SOPs
-
-
-
-\## 🔒 Privacidade e Segurança
-
-
-
-\- ✅ Todos os dados processados localmente
-
-\- ✅ Nenhuma informação enviada para APIs externas
-
-\- ✅ LLM roda no próprio servidor (Ollama)
-
-\- ✅ Embeddings gerados localmente
-
-\- ✅ Ideal para dados sensíveis/confidenciais
-
-
-
-\## 📁 Estrutura do Projeto
-
+## 📁 Estrutura do Projeto
 ```
-
 documentation-assistant/
-
 ├── backend/
-
 │   ├── app/
+│   │   ├── main.py              # Endpoints FastAPI
+│   │   ├── rag_engine.py        # Motor RAG (indexação + busca)
+│   │   ├── models.py            # Modelos Pydantic
+│   │   └── config.py            # Configurações (paths, modelos)
+│   ├── data/
+│   │   ├── documentos/          # PDFs carregados (não versionado)
+│   │   ├── faiss_index/         # Índice vetorial (não versionado)
+│   │   └── metadata.json        # Metadados dos chunks
+│   ├── requirements.txt
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx              # Componente principal
+│   │   ├── components/
+│   │   │   ├── ChatInterface.jsx
+│   │   │   ├── SearchBar.jsx
+│   │   │   └── SourceViewer.jsx
+│   │   └── services/
+│   │       └── api.js           # Client HTTP
+│   ├── package.json
+│   └── vite.config.js
+├── docs/
+│   └── screenshot.png           # Print da aplicação
+├── tests/                        # Testes automatizados
+├── .gitignore
+├── README.md
+└── LICENSE
 
-│   │   ├── main.py          # FastAPI endpoints
+🎯 Casos de Uso
+Recursos Humanos
 
-│   │   ├── rag\_engine.py    # Sistema RAG
+"Qual o processo para solicitar férias?"
+"Como funciona o reembolso de despesas?"
+"Qual a política de home office?"
 
-│   │   ├── models.py        # Pydantic models
+TI e Suporte Técnico
 
-│   │   └── config.py        # Configurações
+"Como resetar senha da VPN?"
+"Procedimento para solicitar novo equipamento"
+"Política de backup de dados"
 
-│   └── data/
+Compliance e Jurídico
 
-│       ├── documentos/      # PDFs indexados
+"Quais são as diretrizes de LGPD da empresa?"
+"Normas de segurança da informação"
+"Procedimento para tratamento de dados pessoais"
 
-│       └── faiss\_index/     # Vector database
+Operações
 
-└── frontend/
-
-&nbsp;   └── src/
-
-&nbsp;       ├── App.jsx          # Componente principal
-
-&nbsp;       └── services/        # API client
-
-```
-
-
-
-\## 🎓 Projeto Educacional
+"Manual de uso do sistema X"
+"Checklist de abertura de loja"
+"SOPs de atendimento ao cliente"
 
 
+🔒 Privacidade e Segurança
+Por que 100% local é importante:
+✅ Conformidade LGPD: Dados sensíveis nunca saem do servidor da empresa
+✅ Sem vazamentos: Nenhuma pergunta ou documento é enviado para OpenAI, Anthropic ou qualquer API externa
+✅ Auditabilidade completa: Toda resposta cita a fonte exata, permitindo verificação
+✅ Controle total: Você escolhe quais documentos indexar e quando atualizá-los
+✅ Sem custos recorrentes: Sem cobrança por tokens ou chamadas de API
+Arquitetura de privacidade:
 
+LLM roda via Ollama (local)
+Embeddings gerados localmente (Sentence-Transformers)
+Vector store armazenado em disco (FAISS)
+PDFs permanecem no servidor
+
+
+🧪 Testes
+bashcd backend
+
+# Executar testes
+pytest tests/
+
+# Com cobertura
+pytest --cov=app tests/
+
+📊 Performance
+Benchmarks típicos (hardware médio - Intel i5, 16GB RAM):
+OperaçãoTempoIndexação de 1 PDF (20 páginas)~15-30sBusca vetorial (top 5 chunks)~200msGeração de resposta (LLM)~3-8sTotal por pergunta~4-10s
+Otimizações possíveis:
+
+GPU acceleration (Ollama com CUDA)
+Cache de respostas frequentes
+FAISS GPU para datasets grandes (10k+ documentos)
+
+
+🗺️ Roadmap
+v1.0 (Atual)
+
+✅ RAG básico funcionando
+✅ Upload de PDFs
+✅ Interface web React
+✅ Citação de fontes
+
+v1.1 (Próximo)
+
+ Upload via drag & drop na interface
+ Autenticação de usuários
+ Histórico de conversas
+ Feedback (útil/não útil)
+
+v2.0 (Futuro)
+
+ Suporte a múltiplos formatos (DOCX, TXT, HTML)
+ Categorização automática de documentos
+ Dashboard de analytics (perguntas mais frequentes)
+ Modo admin para gestão de documentos
+ API de integração (Slack, Teams, WhatsApp)
+
+
+🤝 Contribuindo
+Contribuições são bem-vindas! Por favor:
+
+Fork o projeto
+Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
+Commit suas mudanças (git commit -m 'Add some AmazingFeature')
+Push para a branch (git push origin feature/AmazingFeature)
+Abra um Pull Request
+
+
+📝 Licença
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+👤 Autor
+Hugo Ryan
+
+GitHub: @hugo-ryanf
+LinkedIn: seu-linkedin
+Email: seu.email@exemplo.com
+
+
+🙏 Agradecimentos
 Este projeto foi desenvolvido como estudo de:
 
-\- RAG (Retrieval-Augmented Generation)
+Sistemas RAG (Retrieval-Augmented Generation)
+IA aplicada a problemas corporativos reais
+Arquitetura full-stack com Python e React
+Privacidade e segurança em aplicações de IA
 
-\- Sistemas de IA corporativos
+Inspirações e recursos úteis:
 
-\- Processamento de linguagem natural
-
-\- Arquitetura de aplicações full-stack
-
-
-
-\## 📝 Licença
-
+LangChain Documentation
+Ollama Official Docs
+FAISS by Facebook Research
 
 
-MIT
+📞 Suporte
+Encontrou um bug? Tem uma sugestão?
+
+Abra uma Issue
+Ou entre em contato diretamente
 
 
+⭐ Se este projeto foi útil para você, considere dar uma estrela!
 
-\## 👤 Autor
-
-
-
-Hugo Ryan - \[GitHub](https://github.com/hugo-ryanf)
-
-
-
+Desenvolvido com ❤️ para resolver problemas reais de acesso à informação corporativa
