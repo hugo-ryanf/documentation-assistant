@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/FastAPI-005571?logo=fastapi&logoColor=white" alt="FastAPI">
   <img src="https://img.shields.io/badge/Ollama-000000?logo=ollama&logoColor=white" alt="Ollama">
 </p>
-**Sistema RAG para busca inteligente em documentação empresarial com IA 100% local.**
+Sistema RAG para busca inteligente em documentação empresarial com IA 100% local.
 
 <img width="1882" height="909" alt="Captura de tela 2026-02-17 214919" src="https://github.com/user-attachments/assets/30c76cab-a60e-41e6-9b27-ce3c6902de99" />
 
